@@ -3,7 +3,7 @@ import React from 'react';
 import App from './App'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import ErrorPage from './ErrorPage';
-import Main from './components/Body/Main';
+import Main, { loader as urlDataLoader, action as urlDataAction } from './components/Body/Main';
 import Passages from './components/Body/Passages';
 import Experiments from './components/Body/Experiments';
 
@@ -15,7 +15,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Main />
+        element: <Main />,
+        loader: urlDataLoader,
+        action: urlDataAction
       },
       {
         path: '/passages',
