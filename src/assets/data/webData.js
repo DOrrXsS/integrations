@@ -30,16 +30,16 @@ export async function getUrlData() {
 //modify urlData
 export async function setUrlData(urlType, title, url) {
     const data = await getUrlData();
-    if(!urlType) {
-        return data;
-    }
-    let newUrlData = data.urlTypes[urlType].unshift({title:title, url:url});
-    return {
-        urlTypes:{
-            ...data.urlTypes,
-            newUrlData
-        }
-    }
+    data.urlTypes[urlType].unshift({title:title, url:url});
+    localforage.setItem('urlData', data)
+    return data;
+}
+
+export async function deleteData(urlType,title) {
+    const data = await getUrlData();
+    let newURLType = data.urlTypes[urlType].filter((obj) => obj.title!=title);
+    data.urlTypes[urlType] = newURLType;
+    localforage.setItem('urlData', data);
 }
 
 

@@ -10,7 +10,7 @@ export default defineConfig({
       styl: {
         additionalData: `
           $base-dark = rgb(26,26,29)
-          $light-gery = rgb(78,78,80)
+          $light-grey = rgb(78,78,80)
           $light-red = rgb(195,7,63)
           $claret = rgb(111,34,82)
           $blood-red = rgb(149,7,64)

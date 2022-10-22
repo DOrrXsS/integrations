@@ -6,6 +6,7 @@ import ErrorPage from './ErrorPage';
 import Main, { loader as urlDataLoader, action as urlDataAction } from './components/Body/Main';
 import Passages from './components/Body/Passages';
 import Experiments from './components/Body/Experiments';
+import ModifyUrlData, {loader as urlDataTypeLoader} from './components/Body/ModifyUrlData';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,14 @@ const router = createBrowserRouter([
         path: '/',
         element: <Main />,
         loader: urlDataLoader,
-        action: urlDataAction
+        action: urlDataAction,
+        children:[
+          {
+            path: '/modify:urlDataType',
+            element: <ModifyUrlData />,
+            loader: urlDataTypeLoader
+          }
+        ]
       },
       {
         path: '/passages',
