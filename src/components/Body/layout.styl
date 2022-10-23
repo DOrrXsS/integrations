@@ -20,14 +20,15 @@ input
     height: 14px
     background-size: cover
 
-.urlDataBox span:hover
-    color: pink
-.urlDataBox a:hover
+.urlDataBox span:hover,.url-label:hover
     color: pink
     
 
 .urlDataItem
     margin: 5px 10px
+
+.url-label:hover
+    cursor pointer
 
 //ModifyUrlData.jsx
 #modify-page
@@ -48,11 +49,19 @@ input
     padding: 5px
 
 #modifyUrlDataForm label
-    display: block
-    position: relative
-    left: 50%
-    transform: translate(-50%, 0)
+    display: flex
 
+#modifyUrlDataForm label>*
+    flex: 1
+
+#modifyUrlDataForm button
+    background-color: $base-dark
+    color: white
+
+#modifyUrlDataForm .formButton
+    display: flex
+    justify-content: right 
+    margin-top: 8px
 
 
     
