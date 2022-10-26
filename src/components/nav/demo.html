@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        #input {
+            height: 300px;
+            padding: 10px 5px;
+            line-height: 20px;
+            width: 1000px;
+        }
+
+        #submit {
+            height: 30px;
+            text-align: center;
+            color: #ffffff;
+            line-height: 30px;
+            width: 80px;
+            background-color: blue;
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        #result li {
+            height: 40px;
+            line-height: 40px;
+            float: left;
+            margin: 10px 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="input" placeholder="输入多个网址以空格间隔"></textarea>
+    <div id="submit">获取icon</div>
+    <ul id="result">
+
+    </ul>
+
+    <script type="text/javascript">
+        var input = document.getElementById("input");
+        var submit = document.getElementById("submit");
+        var result = document.getElementById("result");
+        var val;
+
+        function trim(str) {
+            var whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
+            for (var i = 0, len = str.length; i < len; i++) {
+                if (whitespace.indexOf(str.charAt(i)) === -1) {
+                    str = str.substring(i);
+                    break;
+                }
+            }
+            for (i = str.length - 1; i >= 0; i--) {
+                if (whitespace.indexOf(str.charAt(i)) === -1) {
+                    str = str.substring(0, i + 1);
+                    break;
+                }
+            }
+            return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
+        }
+
+        function getFavIconUrl(url) {
+            var prohost;
+            prohost = url.match(/([^:\/?#]+:\/\/)?([^\/@:]+)/i);
+            prohost = prohost ? prohost : [true, "http://", document.location.hostname];
+
+            //补全url
+            if (!prohost[1]) {
+                prohost[1] = "http://";
+            }
+            //抓取ico
+            return "http://www.google.com/s2/favicons?domain=" + prohost[1] + prohost[2];
+        }
+        submit.onclick = function () {
+            val = input.value;
+            if (!val) alert("输入为空！");
+            val = val.split(" ");
+            val.forEach(function (item) {
+                item = trim(item);
+                if (!item) return;
+                result.innerHTML += "<li>" + item + "<img src='" + getFavIconUrl(item) + "'></li>";
+            });
+        };
+    </script>
+</body>
+
+</html>
