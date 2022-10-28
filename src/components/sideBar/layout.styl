@@ -1,0 +1,40 @@
+#side-bar
+    position: absolute
+    left: 0
+    top: 0
+    width: 30vw
+    height: 100%
+    z-index: 999
+    background-color: $blood-red
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-content: center
+
+.slide-in
+    animation-name: slideIn
+    animation-duration: 1s
+
+.silde-out
+    animation-name: slideOut
+    animation-duration: 1s
+    animation-direction: alternate
+ 
+
+@keyframes slideIn {
+    from {
+        left: -30vw
+    }
+    to {
+        left: 0
+    }
+}
+
+@keyframes slideOut {
+    from {
+        left: 0
+    }
+    to {
+        left: -30vw
+    }
+}

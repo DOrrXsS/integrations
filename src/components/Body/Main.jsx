@@ -4,6 +4,8 @@ import { getUrlData, setUrlData } from '../../assets/data/webData';
 import styles from './layout.styl';
 import { Link } from 'react-router-dom';
 
+import editDark from "../../assets/imgs/edit-dark.svg";
+
 export default function Main() {
   let urlData = useLoaderData();
   const actionData = useActionData();
@@ -18,15 +20,22 @@ export default function Main() {
       {
         types.map((type, index) => {
           return (
-            <div key={index} className='urlDataBox'>
-              <Link to={`modify:${type}`}><span>{type}</span></Link>
+            <ul key={index} className='urlDataBox'>
+              <div className='urlDataBoxLabel'>
+                <Link to={`/${type}`}>
+                  <span>{type}</span>
+                </Link>
+                <Link to={`modify:${type}`}>
+                  <img className='edit' src={editDark} />
+                </Link>
+              </div>
               {urlData.urlTypes[type].map((urlDataObj, index) => {
-                return (<div key={index} className='urlDataItem'>
+                return (<li key={index} className='urlDataItem'>
                   <img className='urlIcon' src={urlDataObj.iconSrc} />
-                  <span className='url-label' onClick={() => {window.open(urlDataObj.url)}}><i>{urlDataObj.title}</i></span>
-                </div>)
+                  <span className='url-label' onClick={() => { window.open(urlDataObj.url) }}><i>{urlDataObj.title}</i></span>
+                </li>)
               })}
-            </div>
+            </ul>
           )
         })
       }
@@ -41,8 +50,10 @@ export async function loader({ request, params }) {
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  const data = await setUrlData(updates.classification, updates.title, updates.url);
-  const currentPath = new URL(request.url).pathname;
-  return { currentPath, data };
+  if (updates.classification) {
+    const data = await setUrlData(updates.classification, updates.title, updates.url);
+    const currentPath = new URL(request.url).pathname;
+    return { currentPath, data };
+  }
 }
 

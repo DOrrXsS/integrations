@@ -8,18 +8,22 @@ input
     display: flex
     column-gap: 10px
 
+.urlDataBoxLabel:
+    display: flex
 
 .urlDataBox span
     position: relative
     left: 4px
 
-.urlDataBox>a>span::after
-    content: ''
+.edit
     background-image: url("../../assets/imgs/edit-dark.svg")
     display: inline-block
     width: 14px
     height: 14px
     background-size: cover
+
+.edit:hover
+    background-image: url("../../assets/imgs/edit-light.svg")
 
 .urlDataBox span:hover,.url-label:hover
     color: pink

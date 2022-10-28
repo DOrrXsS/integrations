@@ -4,16 +4,41 @@
     text-align: center
     background: $light-red 
 
+#settings
+    position: relative
+    height: 25px
+    top: 10px
+    left: -100px
+
+#settings:hover 
+    animation-duration: 3s
+    animation-name: spin
+    animation-iteration-count: infinite
+    animation-direction: alternate
+
+@keyframes spin {
+    from {
+        transform: rotate(0turn)
+    }
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+#settings img
+    height: 100%
+
+
 #navigation
     display: flex
     height: min(100%, 50px)
     justify-content: center
     width: min(60%, 500px)
     margin: 0 auto
-
+    transform: translate(-25px)
 
 .nav-opt
-    flex: 1
+    flex: 999
     text-align: center
     margin: auto
 

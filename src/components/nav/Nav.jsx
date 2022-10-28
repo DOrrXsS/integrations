@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './nav.styl';
 import { Link } from 'react-router-dom';
+import setting from '../../assets/imgs/settings.svg';
 
 export default function Nav() {
     const navList = [
@@ -19,8 +20,11 @@ export default function Nav() {
     ]
     return (
         <div>
-            <div id='top-greeting'>paprikaの部屋</div>
+            <div id='top-greeting'>paprika</div>
             <div id='navigation'>
+                <div id='settings'>
+                    <Link to='/settings'><img src={setting} /></Link>
+                </div>
                 { navList.map((navObj, index) => {
                     return <div className='nav-opt' key={index}>
                         <Link to={navObj.path}>{navObj.title}</Link>

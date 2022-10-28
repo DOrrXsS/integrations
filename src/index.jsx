@@ -7,6 +7,8 @@ import Main, { loader as urlDataLoader, action as urlDataAction } from './compon
 import Passages from './components/Body/Passages';
 import Experiments from './components/Body/Experiments';
 import ModifyUrlData, {loader as urlDataTypeLoader} from './components/Body/ModifyUrlData';
+import SideBar from './components/sideBar/SideBar';
+import UrlType, { loader as urlTypeLoader} from './components/Body/UrlType';
 
 const router = createBrowserRouter([
   {
@@ -21,9 +23,19 @@ const router = createBrowserRouter([
         action: urlDataAction,
         children:[
           {
+            path: '/:urlType',
+            element: <UrlType />,
+            loader: urlTypeLoader
+          },
+          {
             path: '/modify:urlDataType',
             element: <ModifyUrlData />,
             loader: urlDataTypeLoader
+          },
+          {
+            path: '/settings',
+            element: <SideBar />,
+            
           }
         ]
       },
