@@ -1,0 +1,97 @@
+//vars
+flight-page()
+    position: absolute
+    z-index 999
+    background: $base-dark
+    opacity: 90%
+    width: 100%
+    height: 100%
+
+flight-page-ele()
+    position: relative
+    top: 50%
+    left: 50%
+    width: max(50%,300px)
+    transform: translate(-50%, -50%)
+    border: 2px white solid
+    padding: 5px
+    & button
+        background-color: $base-dark
+        color: white
+    & .formButton
+        display: flex
+        justify-content: right 
+        margin-top: 8px
+        & button:hover
+            background-color:$blood-red
+
+//Main.jsx
+.urlDataBoxes 
+    background: $light-grey
+    display: flex
+    column-gap: 10px
+
+.urlDataBoxLabel:
+    display: flex
+
+.urlDataBox span
+    position: relative
+    left: 4px
+
+.edit
+    background-image: url("../../../assets/imgs/edit-dark.svg")
+    display: inline-block
+    width: 14px
+    height: 14px
+    background-size: cover
+
+.edit:hover
+    background-image: url("../../../assets/imgs/edit-light.svg")
+
+.urlDataBox span:hover,.url-label:hover
+    color: pink
+    
+
+.urlDataItem
+    margin: 5px 10px
+
+.url-label:hover
+    cursor pointer
+
+//ModifyUrlData.jsx
+#modify-page
+    flight-page()
+
+#modifyUrlDataForm
+    flight-page-ele()
+
+#modifyUrlDataForm label
+    display: flex
+
+#modifyUrlDataForm label>*
+    flex: 1
+
+#modifyUrlDataForm input 
+    background: $base-dark
+    color: white
+
+//urlType
+#urlType-details
+    flight-page()
+
+#urlType-details>ul
+    flight-page-ele()
+    li
+        list-style-type: none
+        &:hover
+            background-color:$blood-red
+            font-size: x-large
+        img
+            position: absolute
+            right: 5px
+
+
+
+    
+
+    

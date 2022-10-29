@@ -3,12 +3,12 @@ import React from 'react';
 import App from './App'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import ErrorPage from './ErrorPage';
-import Main, { loader as urlDataLoader, action as urlDataAction } from './components/Body/Main';
-import Passages from './components/Body/Passages';
-import Experiments from './components/Body/Experiments';
-import ModifyUrlData, {loader as urlDataTypeLoader} from './components/Body/ModifyUrlData';
+import Main, { loader as urlDataLoader, action as urlDataAction } from './components/Body/Main/Main.jsx';
+import Passages from './components/Body/Passages/Passages.jsx';
+import Experiments from './components/Body/Experiments/Experiments.jsx';
+import ModifyUrlData, {loader as urlDataTypeLoader} from './components/Body/Main/ModifyUrlData.jsx';
 import SideBar from './components/sideBar/SideBar';
-import UrlType, { loader as urlTypeLoader} from './components/Body/UrlType';
+import UrlType, { loader as urlTypeLoader} from './components/Body/Main/UrlType.jsx';
 
 const router = createBrowserRouter([
   {

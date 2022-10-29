@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Outlet, redirect, useActionData, useLoaderData } from 'react-router-dom';
-import { getUrlData, setUrlData } from '../../assets/data/webData';
+import { getUrlData, setUrlData } from '../../../assets/data/webData.js';
 import styles from './layout.styl';
 import { Link } from 'react-router-dom';
 
-import editDark from "../../assets/imgs/edit-dark.svg";
+import editDark from "../../../assets/imgs/edit-dark.svg";
 
 export default function Main() {
   let urlData = useLoaderData();

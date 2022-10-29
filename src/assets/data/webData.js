@@ -61,6 +61,14 @@ export async function updateData(urlType, index, title, url) {
 
 //---------------------------------------------
 
+export async function setUrlType(urlType,newData) {
+    const data = await getUrlData();
+    if(data.urlTypes[urlType]) {
+        data.urlTypes[urlType] = newData;
+        localforage.setItem('urlData', newData);
+    }
+    return data;
+}
 
 export async function addUrlType(str) {
     const data = await getUrlData();
