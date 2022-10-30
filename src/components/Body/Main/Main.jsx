@@ -49,6 +49,7 @@ export async function loader({ request, params }) {
 
 export async function action({ request, params }) {
   const formData = await request.formData();
+  console.log(formData);
   const updates = Object.fromEntries(formData);
   if (updates.classification) {
     const data = await setUrlData(updates.classification, updates.title, updates.url);

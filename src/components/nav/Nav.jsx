@@ -20,7 +20,9 @@ export default function Nav() {
     ]
     return (
         <div>
-            <div id='top-greeting'>paprika</div>
+            <div id='top-greeting'>
+                <h1>paprika</h1>
+            </div>
             <div id='navigation'>
                 <div id='settings'>
                     <Link to='/settings'><img src={setting} /></Link>

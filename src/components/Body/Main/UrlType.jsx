@@ -1,33 +1,34 @@
 import React, { useState } from 'react'
-import { Link, useLoaderData } from 'react-router-dom';
-import { deleteData, getUrlData } from '../../../assets/data/webData.js';
+import { Link, useLoaderData, useNavigate, useSubmit } from 'react-router-dom';
+import { deleteData, getUrlData, setUrlType } from '../../../assets/data/webData.js';
 import deleteSvg from '../../../assets/imgs/delete.svg'
 
 export default function UrlType() {
     const urlTypeData = useLoaderData();
     var [fData, setDate] = useState(urlTypeData[1])
-    // const delData = (urlType, title) => {
-    //     let newData = fData;
-    //     console.log(urlType,title);
-    //     newData.filter((obj) => !obj.title==title)
-    //     console.log(newData);
-    // };
+    const submit = useSubmit();
+    const delData = (urlType, title) => {
+        let newData = fData.filter((obj) => obj.title != title)
+        setDate(newData);
+    };
     return (
         <div id='urlType-details'>
             <ul>
-                {urlTypeData[1].map((obj, index) => {
+                {fData.map((obj, index) => {
                     return (
-                        <li key={index} onClick={()=>{delData(urlTypeData[0],obj.title)}}>
-                            <Link to={obj.url}>
-                                <span>{obj.title}</span>
-                            </Link>
-                            <img src={deleteSvg}/>
+                        <li key={index}>
+                            <span className='url-label' onClick={() => { window.open(obj.url) }}>{obj.title}</span>
+                            <img src={deleteSvg} onClick={()=>{delData(urlTypeData[0], obj.title)}}/>
                         </li>
                     )
                 })}
                 <div className='formButton'>
-                    <button>confirm</button>
-                    <button>cancel</button>
+                    <button onClick={()=>{
+                        console.log(fData);
+                        setUrlType(urlTypeData[0],fData);
+                        submit(null,{action:'/', method:'post'});
+                    }}>confirm</button>
+                    <button onClick={()=>{submit(null,{action:'/'})}}>cancel</button>
                 </div>
             </ul>
         </div>
@@ -38,5 +39,5 @@ export async function loader({ request, params }) {
     const urlType = params.urlType;
     const data = await getUrlData();
     const urlTypeData = data.urlTypes[urlType];
-    return [urlType,urlTypeData];
+    return [urlType, urlTypeData];
 }
