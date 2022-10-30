@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLoaderData, Form, useNavigate, useSubmit } from 'react-router-dom';
+import { setUrlData } from '../../../assets/data/webData';
 
 export default function ModifyUrlData() {
     const urlDataType = useLoaderData().slice(1);
@@ -23,6 +24,7 @@ export default function ModifyUrlData() {
 
 function checkFormSubmit(e, submit) {
     e.preventDefault();
+    const classificationInput = document.querySelector('.classificationMsgInput');
     const title = document.querySelector(".textMsgInput");
     const url = document.querySelector(".urlMsgInput");
     if (title.value.length == 0 || undefined || null) {
@@ -39,7 +41,8 @@ function checkFormSubmit(e, submit) {
         url.focus();
         return;
     }
-    submit(e.currentTarget);
+    setUrlData(classificationInput.value, title.value, url.value);
+    submit(null, {action:'/', method:'post'});
 }
 
 export async function loader({ request, params }) {
