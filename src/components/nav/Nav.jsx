@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './nav.styl';
 import { Link } from 'react-router-dom';
 import setting from '../../assets/imgs/settings.svg';
+import SideBar from '../sideBar/SideBar';
 
 export default function Nav() {
+    const [isVisible, setVisible] = useState(false);
     const navList = [
         {
             title: '首页',
@@ -25,7 +27,9 @@ export default function Nav() {
             </div>
             <div id='navigation'>
                 <div id='settings'>
-                    <Link to='/settings'><img src={setting} /></Link>
+                    <img src={setting} onClick={()=>{
+                        setVisible(true);
+                    }}/>
                 </div>
                 { navList.map((navObj, index) => {
                     return <div className='nav-opt' key={index}>
@@ -33,6 +37,8 @@ export default function Nav() {
                     </div>
                 })}
             </div>
+
+            <SideBar isVisible={isVisible} setVisible={setVisible}/>
         </div>
     )
 }

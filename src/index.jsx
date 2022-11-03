@@ -4,7 +4,7 @@ import App from './App'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import ErrorPage from './ErrorPage';
 import Main, { loader as urlDataLoader, action as urlDataAction } from './components/Body/Main/Main.jsx';
-import Passages from './components/Body/Passages/Passages.jsx';
+import Passages, {loader as postsLoader} from './components/Body/Passages/Passages.jsx';
 import Experiments from './components/Body/Experiments/Experiments.jsx';
 import ModifyUrlData, {loader as urlDataTypeLoader} from './components/Body/Main/ModifyUrlData.jsx';
 import SideBar from './components/sideBar/SideBar';
@@ -31,17 +31,13 @@ const router = createBrowserRouter([
             path: '/modify:urlDataType',
             element: <ModifyUrlData />,
             loader: urlDataTypeLoader
-          },
-          {
-            path: '/settings',
-            element: <SideBar />,
-            
           }
         ]
       },
       {
         path: '/passages',
         element: <Passages />,
+        loader: postsLoader,
       },
       {
         path:'/experiments',

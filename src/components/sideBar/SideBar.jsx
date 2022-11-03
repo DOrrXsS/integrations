@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './layout.styl'
 
-export default function SideBar() {
+export default function SideBar({isVisible, setVisible}) {
   const navigate = useNavigate();
   const clickCheck = (e) => {
     if (e && e.clientX >= window.innerWidth * 0.3) {
       document.getElementById('side-bar').className = 'silde-out';
-      setTimeout(()=>{navigate('/');console.log(1)}, 950);
+      setTimeout(()=>{setVisible(false);},950);
     }
   }
   useEffect(() => {
@@ -16,7 +16,8 @@ export default function SideBar() {
       document.removeEventListener('mouseup', clickCheck);
     }
   }, [])
-  return (
+  return isVisible ? 
+  (
     <div id='side-bar' className='slide-in'>
       <div id='avatar'>
         avatar
@@ -28,5 +29,6 @@ export default function SideBar() {
         this is paprika'space
       </div>
     </div>
-  )
+  ) :
+  <div/>
 }
