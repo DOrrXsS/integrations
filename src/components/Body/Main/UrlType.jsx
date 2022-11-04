@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useLoaderData, useNavigate, useSubmit } from 'react-router-dom';
-import { deleteData, getUrlData, setUrlType } from '../../../assets/data/webData.js';
+import {  useLoaderData, useNavigate, useSubmit } from 'react-router-dom';
+import {  getUrlData, setUrlType } from '../../../assets/data/webData.js';
 import deleteSvg from '../../../assets/imgs/delete.svg'
 
 export default function UrlType() {
@@ -39,5 +39,8 @@ export async function loader({ request, params }) {
     const urlType = params.urlType;
     const data = await getUrlData();
     const urlTypeData = data.urlTypes[urlType];
+    if(!urlTypeData) {
+        throw new Error('oops! look where you have braved in');
+    }
     return [urlType, urlTypeData];
 }

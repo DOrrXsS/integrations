@@ -9,6 +9,7 @@ import Experiments from './components/Body/Experiments/Experiments.jsx';
 import ModifyUrlData, {loader as urlDataTypeLoader} from './components/Body/Main/ModifyUrlData.jsx';
 import SideBar from './components/sideBar/SideBar';
 import UrlType, { loader as urlTypeLoader} from './components/Body/Main/UrlType.jsx';
+import Post, {loader as postLoader} from './components/Body/Passages/Post';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
         path: '/passages',
         element: <Passages />,
         loader: postsLoader,
+      },
+      {
+        path: '/passages/:postName',
+        element: <Post />,
+        loader: postLoader
       },
       {
         path:'/experiments',

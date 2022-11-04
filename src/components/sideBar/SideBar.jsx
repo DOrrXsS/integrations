@@ -3,19 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import styles from './layout.styl'
 
 export default function SideBar({isVisible, setVisible}) {
-  const navigate = useNavigate();
+  const sideBar = document.getElementById('side-bar');
   const clickCheck = (e) => {
-    if (e && e.clientX >= window.innerWidth * 0.3) {
-      document.getElementById('side-bar').className = 'silde-out';
+    if (e.clientX >= window.innerWidth * 0.3 && sideBar?.className=='slide-in') {
+      sideBar.className = 'silde-out';
+      document.removeEventListener('click', clickCheck);
       setTimeout(()=>{setVisible(false);},950);
     }
   }
-  useEffect(() => {
-    document.addEventListener('mouseup', clickCheck)
-    return () => {
-      document.removeEventListener('mouseup', clickCheck);
-    }
-  }, [])
+  document.addEventListener('click', clickCheck)
   return isVisible ? 
   (
     <div id='side-bar' className='slide-in'>
