@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {  useLoaderData, useNavigate, useSubmit } from 'react-router-dom';
 import {  getUrlData, setUrlType } from '../../../assets/data/webData.js';
-import deleteSvg from '../../../assets/imgs/delete.svg'
+import deleteSvg from '../../../assets/imgs/icons/delete.svg'
 
 export default function UrlType() {
     const urlTypeData = useLoaderData();

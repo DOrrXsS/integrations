@@ -1,0 +1,59 @@
+//Main.jsx
+#main
+    display: grid
+    column-gap: 5px
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-columns: 2fr 1fr 
+    grid-template-rows: repeat(minmax(100px, auto),3)
+
+    #urlDataBoxes 
+        grid-row: 1;
+        background: $light-grey
+        display: flex
+        column-gap: 10px
+        &.urlDataBox span
+            position: relative
+            left: 4px
+
+.urlDataBoxLabel:
+    display: flex
+
+.urlDataItem
+    margin: 5px 10px
+
+.url-label:hover
+    cursor: pointer
+    color: pink
+
+.edit
+    display: inline-block
+    width: 14px
+    height: 14px
+    background-size: cover
+    &:hover
+        background-image: url("src/assets/imgs/icons/edit-light.svg")
+    
+
+
+    
+
+
+//quickNote
+#notes
+    background-color: $base-dark
+    height: 300px
+    grid-row: 1 / span 2
+
+.noteBar
+    display: grid
+    grid-template-columns: 3fr 1fr
+    background-color: $light-grey
+    &>span
+        user-select: none
+        color: black
+        &::before
+            content: url('../../../../assets/imgs/icons/right.svg')
+        &.active
+            color: white
+    &>img
+        align-self: center

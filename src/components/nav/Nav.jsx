@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './nav.styl';
 import { Link } from 'react-router-dom';
-import setting from '../../assets/imgs/settings.svg';
+import setting from '../../assets/imgs/icons/settings.svg';
 import SideBar from '../sideBar/SideBar';
 
 export default function Nav() {
