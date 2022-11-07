@@ -46,14 +46,23 @@
 
 .noteBar
     display: grid
-    grid-template-columns: 3fr 1fr
+    grid-template-columns:8fr 1fr 1fr
     background-color: $light-grey
-    &>span
+    &>div>span
         user-select: none
         color: black
-        &::before
-            content: url('../../../../assets/imgs/icons/right.svg')
+        transition-property: all
+        transition-duration: 0.2s
         &.active
             color: white
+    &>div>img
+        user-select: none
+        transition-property: all
+        transition-duration: 0.2s
+        &.right-down
+            transform: rotate(0.25turn)
+    
     &>img
         align-self: center
+        justify-self: right
+        

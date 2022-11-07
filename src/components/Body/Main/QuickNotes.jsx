@@ -1,17 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
-import fakeData from '../../../assets/data/notesData';
+import {fakeData} from '../../../assets/data/notesData';
 import addIcon from '../../../assets/imgs/icons/add.svg';
+import minusIcon from '../../../assets/imgs/icons/minus.svg';
+import rightIcon from '../../../assets/imgs/icons/right.svg';
 
 export default function QuickNotes() {
     let notesData = fakeData();
     let [showStates, setShowStates] = useState(
         createState(notesData)
     );
-    console.log(showStates)
     return (
         <div id='notes'>
             {notesData.map(noteObj => {
+                let show = showStates[noteObj.createTime];
                 return (
                     <div className='note' key={noteObj.createTime}>
                         {/* //点击改变对应note的显示状态 */}
@@ -21,12 +23,16 @@ export default function QuickNotes() {
                             newData[noteObj.createTime] = !newData[noteObj.createTime];
                             setShowStates(newData);
                         }}>
-                            <span className={showStates[noteObj.createTime] ? 'active' : 'inactive'}>{noteObj.taskName}</span>
+                            <div>
+                                <img src={rightIcon} className={show? 'right-down': 'down-right'}/>
+                                <span className={show ? 'active' : 'inactive'}>{noteObj.taskName}</span>
+                            </div>
                             <img src={addIcon} />
+                            <img src={minusIcon} />
                         </div>
                         {/* //根据显示state返回结果 */}
                         {
-                            showStates[noteObj.createTime] ?
+                            show ?
                                 (<ul>
                                     {noteObj.lists.map(list => {
                                         return (

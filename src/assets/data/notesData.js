@@ -1,4 +1,11 @@
-export default function fakeData(){
+import localforage from "localforage";
+
+export function TaskList(content, updateDate) {
+    this.content = content;
+    this.updateDate = updateDate;
+}
+
+export function fakeData(){
     return [
         {
             taskName:'react学习',
@@ -30,7 +37,42 @@ export default function fakeData(){
     ]
 }
 
-function TaskList(content, updateDate) {
-    this.content = content;
-    this.updateDate = updateDate;
+export async function getNotes() {
+    let notes = await localforage.getItem('notes');
+    if(!notes) {
+        notes = {};
+        localforage.setItem('notes', notes);
+    }
+    return notes;
 }
+
+export async function setNote(taskName, createTime) {
+    let notes = await getNotes();
+    let newNote = {
+        taskName,
+        createTime,
+        lists:[]
+    }
+    notes.unshift(newNote);
+    localforage.setItem('notes', notes);
+    return notes;
+}
+
+export async function deleteNote(taskName, createTime) {
+    let notes = getNotes();
+    notes.filter(note => note.taskName!=taskName&&note.createTime!=createTime);
+    notes = notes.updateDate(notes, taskName, createTime);
+    localforage.setItem('notes', notes);
+}
+
+function updateNoteTime(notes, taskName,createTime) {
+    let newDate = new Date();
+    let newNotes = notes;
+    newNotes.map( note => {
+        if(note.taskName == taskName && note.createTime == createTime) {
+            note.createTime = newDate.getTime()
+        }
+    })
+    return newNotes;
+}
+
