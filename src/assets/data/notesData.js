@@ -5,6 +5,12 @@ export function TaskList(content, updateDate) {
     this.updateDate = updateDate;
 }
 
+export function NoteType(taskName, createTime, lists=[]) {
+    this.taskName = taskName;
+    this.createTime = createTime;
+    this.lists = lists;
+}
+
 export function fakeData(){
     return [
         {
@@ -37,16 +43,21 @@ export function fakeData(){
     ]
 }
 
+export async function setNotes(notes) {
+    localforage.setItem('notes', notes);
+} 
+
 export async function getNotes() {
+    // localforage.clear();
     let notes = await localforage.getItem('notes');
     if(!notes) {
-        notes = {};
+        notes = fakeData();
         localforage.setItem('notes', notes);
     }
     return notes;
 }
 
-export async function setNote(taskName, createTime) {
+export async function addNote(taskName, createTime) {
     let notes = await getNotes();
     let newNote = {
         taskName,
@@ -59,9 +70,8 @@ export async function setNote(taskName, createTime) {
 }
 
 export async function deleteNote(taskName, createTime) {
-    let notes = getNotes();
-    notes.filter(note => note.taskName!=taskName&&note.createTime!=createTime);
-    notes = notes.updateDate(notes, taskName, createTime);
+    let notes = await getNotes();
+    notes = notes.filter(note => note.taskName!=taskName&&note.createTime!=createTime);
     localforage.setItem('notes', notes);
 }
 

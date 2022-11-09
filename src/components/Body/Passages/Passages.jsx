@@ -13,7 +13,7 @@ export default function Passages() {
           let dateObj = frontmatter.date ? new Date(frontmatter.date) : new Date();
           return (
             <div className='post-item' key={index}>
-              <img src={`/src/assets/imgs/${frontmatter.cover_img}`} />
+              <img src={`src/assets/imgs/pics/${frontmatter.cover_img}`} />
                 <p>{frontmatter.title}</p>
               <p>{`${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`}</p>
               <Link to={`/passages/${slug}`}>Read more</Link>

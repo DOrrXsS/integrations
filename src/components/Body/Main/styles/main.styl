@@ -44,25 +44,44 @@
     height: 300px
     grid-row: 1 / span 2
 
+.note
+    & li>.noteNameInput
+        background-color: $base-dark
+        color: white
+        border: none
+
 .noteBar
     display: grid
     grid-template-columns:8fr 1fr 1fr
     background-color: $light-grey
-    &>div>span
+    justify-content: center
+    align-content: center
+    &>div>img
         user-select: none
-        color: black
+        &.right-down
+            transform: rotate(0.25turn)
+    &>div>.noteNameInput
+        background-color: $light-grey
+        border: none
+        display: inline-block
         transition-property: all
         transition-duration: 0.2s
         &.active
             color: white
-    &>div>img
-        user-select: none
-        transition-property: all
-        transition-duration: 0.2s
-        &.right-down
-            transform: rotate(0.25turn)
-    
+        &:focus
+            color: white
+            box-sizing: border-box
+
+        
     &>img
         align-self: center
         justify-self: right
-        
+
+#addNote
+    background-color: $light-grey
+    margin-bottom: 5px
+    font-size: large
+    text-align: center
+    cursor: pointer
+    &:hover
+        background: grey
