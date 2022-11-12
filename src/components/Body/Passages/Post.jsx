@@ -9,7 +9,7 @@ export default function Post() {
     <div className='post'>
       <div className='postTitle'>
         <p>{frontmatter.data.title}</p>
-        <img src={`/src/assets/imgs/${frontmatter.data.cover_img}`}></img>
+        <img src={`/src/assets/imgs/pics/${frontmatter.data.cover_img}`}></img>
       </div>
       <div className='postContent' dangerouslySetInnerHTML={{__html: marked(frontmatter.content)}}/>
     </div>

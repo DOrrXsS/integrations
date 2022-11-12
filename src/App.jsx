@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { Outlet } from 'react-router-dom';
-import { loadAllIcons } from './assets/data/webData';
+import { getUrlData, loadAllIcons } from './assets/data/webData';
 import Nav from './components/nav/Nav';
 import styles from './index.styl';
 
@@ -9,6 +9,13 @@ export default class App extends Component {
   constructor(props){
     super();
     loadAllIcons();
+  }
+
+  componentWillUnmount() {
+    let urlData = getUrlData();
+    urlData.then(data => {
+      this.urlData = data;
+    })
   }
 
   render() {
@@ -20,3 +27,4 @@ export default class App extends Component {
     )
   }
 }
+

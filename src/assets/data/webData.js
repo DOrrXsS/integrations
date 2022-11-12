@@ -61,6 +61,12 @@ export async function updateData(urlType, index, title, url) {
 
 //---------------------------------------------
 
+export async function getUrlType() {
+    const data = await getUrlData();
+    let dataIndex = Object.keys(data.urlTypes);
+    return dataIndex;
+}
+
 export async function setUrlType(urlType,newData) {
     const data = await getUrlData();
     if(data.urlTypes[urlType]) {
