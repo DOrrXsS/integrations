@@ -41,6 +41,10 @@ export default function SideBar({ isVisible, setVisible }) {
               })}
               <li><input placeholder='newCollect' onKeyDown={(e) => {
                 if(e.key == 'Enter') {
+                  if(e.target.value == '') {
+                    console.log('empty')
+                    return ;
+                  }
                   var newInput = e.target.value;
                   setUrlTypes([...urlTypes, newInput]);
                 }
